@@ -53,8 +53,10 @@ export default function HomePage() {
 
           setResults([...results, data]);
           await Log("frontend", "info", "ui", `Short URL created: ${data.shortUrl}`);
-        } catch (err: any) {
-          await Log("frontend", "fatal", "network", err.message || "Unknown error");
+        } catch (err) {
+          const error = err as Error;
+        
+          await Log("frontend", "fatal", "network", error.message || "Unknown error");
           alert("Failed to shorten URL");
         }
       };

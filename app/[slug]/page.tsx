@@ -19,7 +19,7 @@ export default function RedirectPage({ params }: Props) {
         const res = await api.get(`/resolve/${params.slug}`);
         const { longUrl } = res.data;
         window.location.href = longUrl;
-      } catch (error: any) {
+      }  catch (error: any) {
         await Log("frontend", "error", "network", "Redirect failed");
         router.push("/"); // fallback
       }
